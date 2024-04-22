@@ -1856,23 +1856,23 @@ yyjson_api_inline bool yyjson_set_str_noesc(yyjson_val *val, bool noesc);
 
 /** Returns the number of elements in this array.
     Returns 0 if `arr` is NULL or type is not array. */
-yyjson_api_inline size_t yyjson_arr_size(yyjson_val *arr);
+yyjson_api size_t yyjson_arr_size(yyjson_val *arr);
 
 /** Returns the element at the specified position in this array.
     Returns NULL if array is NULL/empty or the index is out of bounds.
     @warning This function takes a linear search time if array is not flat.
         For example: `[1,{},3]` is flat, `[1,[2],3]` is not flat. */
-yyjson_api_inline yyjson_val *yyjson_arr_get(yyjson_val *arr, size_t idx);
+yyjson_api yyjson_val *yyjson_arr_get(yyjson_val *arr, size_t idx);
 
 /** Returns the first element of this array.
     Returns NULL if `arr` is NULL/empty or type is not array. */
-yyjson_api_inline yyjson_val *yyjson_arr_get_first(yyjson_val *arr);
+yyjson_api yyjson_val *yyjson_arr_get_first(yyjson_val *arr);
 
 /** Returns the last element of this array.
     Returns NULL if `arr` is NULL/empty or type is not array.
     @warning This function takes a linear search time if array is not flat.
         For example: `[1,{},3]` is flat, `[1,[2],3]` is not flat.*/
-yyjson_api_inline yyjson_val *yyjson_arr_get_last(yyjson_val *arr);
+yyjson_api yyjson_val *yyjson_arr_get_last(yyjson_val *arr);
 
 
 
@@ -1909,7 +1909,7 @@ typedef struct yyjson_arr_iter {
 
  @note The iterator does not need to be destroyed.
  */
-yyjson_api_inline bool yyjson_arr_iter_init(yyjson_val *arr,
+yyjson_api bool yyjson_arr_iter_init(yyjson_val *arr,
                                             yyjson_arr_iter *iter);
 
 /**
@@ -1927,13 +1927,13 @@ yyjson_api_inline yyjson_arr_iter yyjson_arr_iter_with(yyjson_val *arr);
  Returns whether the iteration has more elements.
  If `iter` is NULL, this function will return false.
  */
-yyjson_api_inline bool yyjson_arr_iter_has_next(yyjson_arr_iter *iter);
+yyjson_api bool yyjson_arr_iter_has_next(yyjson_arr_iter *iter);
 
 /**
  Returns the next element in the iteration, or NULL on end.
  If `iter` is NULL, this function will return NULL.
  */
-yyjson_api_inline yyjson_val *yyjson_arr_iter_next(yyjson_arr_iter *iter);
+yyjson_api yyjson_val *yyjson_arr_iter_next(yyjson_arr_iter *iter);
 
 /**
  Macro for iterating over an array.
@@ -1964,7 +1964,7 @@ yyjson_api_inline yyjson_val *yyjson_arr_iter_next(yyjson_arr_iter *iter);
 
 /** Returns the number of key-value pairs in this object.
     Returns 0 if `obj` is NULL or type is not object. */
-yyjson_api_inline size_t yyjson_obj_size(yyjson_val *obj);
+yyjson_api size_t yyjson_obj_size(yyjson_val *obj);
 
 /** Returns the value to which the specified key is mapped.
     Returns NULL if this object contains no mapping for the key.
@@ -1973,7 +1973,7 @@ yyjson_api_inline size_t yyjson_obj_size(yyjson_val *obj);
     The `key` should be a null-terminated UTF-8 string.
 
     @warning This function takes a linear search time. */
-yyjson_api_inline yyjson_val *yyjson_obj_get(yyjson_val *obj, const char *key);
+yyjson_api yyjson_val *yyjson_obj_get(yyjson_val *obj, const char *key);
 
 /** Returns the value to which the specified key is mapped.
     Returns NULL if this object contains no mapping for the key.
@@ -1983,7 +1983,7 @@ yyjson_api_inline yyjson_val *yyjson_obj_get(yyjson_val *obj, const char *key);
     The `key_len` should be the length of the key, in bytes.
 
     @warning This function takes a linear search time. */
-yyjson_api_inline yyjson_val *yyjson_obj_getn(yyjson_val *obj, const char *key,
+yyjson_api yyjson_val *yyjson_obj_getn(yyjson_val *obj, const char *key,
                                               size_t key_len);
 
 
@@ -2034,7 +2034,7 @@ typedef struct yyjson_obj_iter {
 
  @note The iterator does not need to be destroyed.
  */
-yyjson_api_inline bool yyjson_obj_iter_init(yyjson_val *obj,
+yyjson_api bool yyjson_obj_iter_init(yyjson_val *obj,
                                             yyjson_obj_iter *iter);
 
 /**
@@ -2052,19 +2052,19 @@ yyjson_api_inline yyjson_obj_iter yyjson_obj_iter_with(yyjson_val *obj);
  Returns whether the iteration has more elements.
  If `iter` is NULL, this function will return false.
  */
-yyjson_api_inline bool yyjson_obj_iter_has_next(yyjson_obj_iter *iter);
+yyjson_api bool yyjson_obj_iter_has_next(yyjson_obj_iter *iter);
 
 /**
  Returns the next key in the iteration, or NULL on end.
  If `iter` is NULL, this function will return NULL.
  */
-yyjson_api_inline yyjson_val *yyjson_obj_iter_next(yyjson_obj_iter *iter);
+yyjson_api yyjson_val *yyjson_obj_iter_next(yyjson_obj_iter *iter);
 
 /**
  Returns the value for key inside the iteration.
  If `iter` is NULL, this function will return NULL.
  */
-yyjson_api_inline yyjson_val *yyjson_obj_iter_get_val(yyjson_val *key);
+yyjson_api yyjson_val *yyjson_obj_iter_get_val(yyjson_val *key);
 
 /**
  Iterates to a specified key and returns the value.
@@ -2082,7 +2082,7 @@ yyjson_api_inline yyjson_val *yyjson_obj_iter_get_val(yyjson_val *key);
 
  @warning This function takes a linear search time if the key is not nearby.
  */
-yyjson_api_inline yyjson_val *yyjson_obj_iter_get(yyjson_obj_iter *iter,
+yyjson_api yyjson_val *yyjson_obj_iter_get(yyjson_obj_iter *iter,
                                                   const char *key);
 
 /**
@@ -2102,7 +2102,7 @@ yyjson_api_inline yyjson_val *yyjson_obj_iter_get(yyjson_obj_iter *iter,
 
  @warning This function takes a linear search time if the key is not nearby.
  */
-yyjson_api_inline yyjson_val *yyjson_obj_iter_getn(yyjson_obj_iter *iter,
+yyjson_api yyjson_val *yyjson_obj_iter_getn(yyjson_obj_iter *iter,
                                                    const char *key,
                                                    size_t key_len);
 
@@ -5292,11 +5292,11 @@ yyjson_api_inline bool yyjson_set_str_noesc(yyjson_val *val, bool noesc) {
  * JSON Array API (Implementation)
  *============================================================================*/
 
-yyjson_api_inline size_t yyjson_arr_size(yyjson_val *arr) {
+yyjson_api size_t yyjson_arr_size(yyjson_val *arr) {
     return yyjson_is_arr(arr) ? unsafe_yyjson_get_len(arr) : 0;
 }
 
-yyjson_api_inline yyjson_val *yyjson_arr_get(yyjson_val *arr, size_t idx) {
+yyjson_api yyjson_val *yyjson_arr_get(yyjson_val *arr, size_t idx) {
     if (yyjson_likely(yyjson_is_arr(arr))) {
         if (yyjson_likely(unsafe_yyjson_get_len(arr) > idx)) {
             yyjson_val *val = unsafe_yyjson_get_first(arr);
@@ -5311,7 +5311,7 @@ yyjson_api_inline yyjson_val *yyjson_arr_get(yyjson_val *arr, size_t idx) {
     return NULL;
 }
 
-yyjson_api_inline yyjson_val *yyjson_arr_get_first(yyjson_val *arr) {
+yyjson_api yyjson_val *yyjson_arr_get_first(yyjson_val *arr) {
     if (yyjson_likely(yyjson_is_arr(arr))) {
         if (yyjson_likely(unsafe_yyjson_get_len(arr) > 0)) {
             return unsafe_yyjson_get_first(arr);
@@ -5320,7 +5320,7 @@ yyjson_api_inline yyjson_val *yyjson_arr_get_first(yyjson_val *arr) {
     return NULL;
 }
 
-yyjson_api_inline yyjson_val *yyjson_arr_get_last(yyjson_val *arr) {
+yyjson_api yyjson_val *yyjson_arr_get_last(yyjson_val *arr) {
     if (yyjson_likely(yyjson_is_arr(arr))) {
         size_t len = unsafe_yyjson_get_len(arr);
         if (yyjson_likely(len > 0)) {
@@ -5342,8 +5342,8 @@ yyjson_api_inline yyjson_val *yyjson_arr_get_last(yyjson_val *arr) {
  * JSON Array Iterator API (Implementation)
  *============================================================================*/
 
-yyjson_api_inline bool yyjson_arr_iter_init(yyjson_val *arr,
-                                            yyjson_arr_iter *iter) {
+yyjson_api bool yyjson_arr_iter_init(yyjson_val *arr,
+                                     yyjson_arr_iter *iter) {
     if (yyjson_likely(yyjson_is_arr(arr) && iter)) {
         iter->idx = 0;
         iter->max = unsafe_yyjson_get_len(arr);
@@ -5360,11 +5360,11 @@ yyjson_api_inline yyjson_arr_iter yyjson_arr_iter_with(yyjson_val *arr) {
     return iter;
 }
 
-yyjson_api_inline bool yyjson_arr_iter_has_next(yyjson_arr_iter *iter) {
+yyjson_api bool yyjson_arr_iter_has_next(yyjson_arr_iter *iter) {
     return iter ? iter->idx < iter->max : false;
 }
 
-yyjson_api_inline yyjson_val *yyjson_arr_iter_next(yyjson_arr_iter *iter) {
+yyjson_api yyjson_val *yyjson_arr_iter_next(yyjson_arr_iter *iter) {
     yyjson_val *val;
     if (iter && iter->idx < iter->max) {
         val = iter->cur;
@@ -5381,16 +5381,16 @@ yyjson_api_inline yyjson_val *yyjson_arr_iter_next(yyjson_arr_iter *iter) {
  * JSON Object API (Implementation)
  *============================================================================*/
 
-yyjson_api_inline size_t yyjson_obj_size(yyjson_val *obj) {
+yyjson_api size_t yyjson_obj_size(yyjson_val *obj) {
     return yyjson_is_obj(obj) ? unsafe_yyjson_get_len(obj) : 0;
 }
 
-yyjson_api_inline yyjson_val *yyjson_obj_get(yyjson_val *obj,
+yyjson_api yyjson_val *yyjson_obj_get(yyjson_val *obj,
                                              const char *key) {
     return yyjson_obj_getn(obj, key, key ? strlen(key) : 0);
 }
 
-yyjson_api_inline yyjson_val *yyjson_obj_getn(yyjson_val *obj,
+yyjson_api yyjson_val *yyjson_obj_getn(yyjson_val *obj,
                                               const char *_key,
                                               size_t key_len) {
     if (yyjson_likely(yyjson_is_obj(obj) && _key)) {
@@ -5410,7 +5410,7 @@ yyjson_api_inline yyjson_val *yyjson_obj_getn(yyjson_val *obj,
  * JSON Object Iterator API (Implementation)
  *============================================================================*/
 
-yyjson_api_inline bool yyjson_obj_iter_init(yyjson_val *obj,
+yyjson_api bool yyjson_obj_iter_init(yyjson_val *obj,
                                             yyjson_obj_iter *iter) {
     if (yyjson_likely(yyjson_is_obj(obj) && iter)) {
         iter->idx = 0;
@@ -5429,11 +5429,11 @@ yyjson_api_inline yyjson_obj_iter yyjson_obj_iter_with(yyjson_val *obj) {
     return iter;
 }
 
-yyjson_api_inline bool yyjson_obj_iter_has_next(yyjson_obj_iter *iter) {
+yyjson_api bool yyjson_obj_iter_has_next(yyjson_obj_iter *iter) {
     return iter ? iter->idx < iter->max : false;
 }
 
-yyjson_api_inline yyjson_val *yyjson_obj_iter_next(yyjson_obj_iter *iter) {
+yyjson_api yyjson_val *yyjson_obj_iter_next(yyjson_obj_iter *iter) {
     if (iter && iter->idx < iter->max) {
         yyjson_val *key = iter->cur;
         iter->idx++;
@@ -5443,16 +5443,16 @@ yyjson_api_inline yyjson_val *yyjson_obj_iter_next(yyjson_obj_iter *iter) {
     return NULL;
 }
 
-yyjson_api_inline yyjson_val *yyjson_obj_iter_get_val(yyjson_val *key) {
+yyjson_api yyjson_val *yyjson_obj_iter_get_val(yyjson_val *key) {
     return key ? key + 1 : NULL;
 }
 
-yyjson_api_inline yyjson_val *yyjson_obj_iter_get(yyjson_obj_iter *iter,
+yyjson_api yyjson_val *yyjson_obj_iter_get(yyjson_obj_iter *iter,
                                                   const char *key) {
     return yyjson_obj_iter_getn(iter, key, key ? strlen(key) : 0);
 }
 
-yyjson_api_inline yyjson_val *yyjson_obj_iter_getn(yyjson_obj_iter *iter,
+yyjson_api yyjson_val *yyjson_obj_iter_getn(yyjson_obj_iter *iter,
                                                    const char *key,
                                                    size_t key_len) {
     if (iter && key) {
